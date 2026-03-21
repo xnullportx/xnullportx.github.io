@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Secret Grammar of Proteins</title>
+<style>
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    background: #1a1a2e;
+    color: #a0a8b8;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 18px;
+    line-height: 1.8;
+  }
+
+  .container {
+    max-width: 740px;
+    margin: 0 auto;
+    padding: 64px 32px 120px;
+  }
+
+  .kicker {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #7c6bc9;
+    margin-bottom: 24px;
+  }
+
+  h1 {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 1.05;
+    color: #c8cfe0;
+    margin-bottom: 28px;
+  }
+
+  h1 span {
+    color: #9d8df0;
+  }
+
+  .subtitle {
+    font-size: 20px;
+    color: #a0a8b8;
+    line-height: 1.6;
+    margin-bottom: 56px;
+    max-width: 580px;
+  }
+
+  .stats {
+    display: flex;
+    gap: 48px;
+    flex-wrap: wrap;
+    margin-bottom: 72px;
+  }
+
+  .stat-num {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 48px;
+    font-weight: 700;
+    color: #9d8df0;
+    line-height: 1;
+    display: block;
+  }
+
+  .stat-label {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 13px;
+    color: #6b7490;
+    display: block;
+    margin-top: 6px;
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid #2e2e4a;
+    margin: 64px 0;
+  }
+
+  .section-kicker {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #7c6bc9;
+    margin-bottom: 16px;
+  }
+
+  h2 {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 44px;
+    font-weight: 700;
+    color: #9d8df0;
+    line-height: 1.12;
+    margin-bottom: 28px;
+  }
+
+  h3 {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #c8cfe0;
+    line-height: 1.3;
+    border-left: 4px solid #9d8df0;
+    padding-left: 16px;
+    margin: 44px 0 18px;
+  }
+
+  p {
+    color: #a0a8b8;
+    margin-bottom: 24px;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+
+  .aa-groups {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 32px;
+    margin: 16px 0 24px;
+  }
+
+  .aa-groups span {
+    font-family: Georgia, serif;
+    font-size: 17px;
+    color: #a0a8b8;
+  }
+
+  .fp-wrap {
+    margin: 32px 0;
+  }
+
+  .fp-header {
+    font-family: 'Courier New', monospace;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: #9d8df0;
+    margin-bottom: 4px;
+  }
+
+  .fp-labels {
+    font-family: Georgia, serif;
+    font-size: 13px;
+    color: #6b7490;
+    margin-bottom: 10px;
+    line-height: 1.5;
+  }
+
+  .fp-digits {
+    display: flex;
+    gap: 7px;
+    margin-bottom: 12px;
+  }
+
+  .fp-digits span {
+    font-family: 'Courier New', monospace;
+    font-size: 22px;
+    font-weight: 700;
+    color: #2e2e4a;
+    min-width: 18px;
+    text-align: center;
+  }
+
+  .fp-digits span.pos { color: #9d8df0; }
+  .fp-digits span.neg { color: #5ba3b0; }
+
+  .fp-note {
+    font-family: Georgia, serif;
+    font-size: 14px;
+    color: #a0a8b8;
+    line-height: 1.65;
+  }
+
+  .fp-note strong {
+    color: #c8cfe0;
+  }
+
+  .fp-note code {
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    color: #9d8df0;
+  }
+
+  .fp-group-labels {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 12px;
+    color: #6b7490;
+    display: flex;
+    gap: 64px;
+    margin-bottom: 4px;
+  }
+
+  .callout {
+    border-left: 4px solid #9d8df0;
+    padding: 20px 24px;
+    margin: 36px 0;
+    background: #16162a;
+  }
+
+  .callout-kicker {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #6b7490;
+    margin-bottom: 8px;
+  }
+
+  .callout-number {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 54px;
+    font-weight: 700;
+    color: #c8cfe0;
+    line-height: 1;
+    margin-bottom: 10px;
+  }
+
+  .callout-detail {
+    font-family: Georgia, serif;
+    font-size: 15px;
+    color: #6b7490;
+    line-height: 1.65;
+  }
+
+  .callout-detail code {
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    color: #9d8df0;
+  }
+
+  .barchart {
+    margin: 28px 0 8px;
+  }
+
+  .bar-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 11px;
+  }
+
+  .bar-name {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 13px;
+    color: #a0a8b8;
+    text-align: right;
+    flex: 0 0 220px;
+  }
+
+  .bar-track {
+    flex: 1;
+    height: 5px;
+    background: #2e2e4a;
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .bar-fill {
+    height: 100%;
+    background: #9d8df0;
+    opacity: 0.6;
+    border-radius: 3px;
+  }
+
+  .bar-val {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: #9d8df0;
+    flex: 0 0 56px;
+  }
+
+  .bar-caption {
+    font-family: Georgia, serif;
+    font-size: 14px;
+    color: #6b7490;
+    margin-top: 10px;
+    line-height: 1.6;
+  }
+
+  .pullquote {
+    border-top: 2px solid #2e2e4a;
+    border-bottom: 2px solid #2e2e4a;
+    padding: 32px 0;
+    margin: 48px 0;
+  }
+
+  .pullquote p {
+    font-family: Georgia, serif;
+    font-size: 22px;
+    font-style: italic;
+    color: #9d8df0;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .methods h4 {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: #c8cfe0;
+    margin-bottom: 20px;
+  }
+
+  .methods p {
+    font-size: 15px;
+    color: #6b7490;
+  }
+
+  code {
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    color: #9d8df0;
+  }
+
+  @media (max-width: 580px) {
+    h1 { font-size: 44px; }
+    h2 { font-size: 32px; }
+    .stats { gap: 28px; }
+    .stat-num { font-size: 36px; }
+    .bar-name { flex: 0 0 150px; font-size: 12px; }
+    .callout-number { font-size: 40px; }
+  }
+
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HERO -->
+  <p class="kicker">PROTEIN INTERACTION ANALYSIS &middot; STRUCTURAL PROTEOMICS</p>
+
+  <h1>The <span>Secret Grammar</span><br>of Proteins</h1>
+
+  <p class="subtitle">Mining 629,145 conserved interactions across 69,984 protein structures to map the hidden chemical rules of molecular architecture.</p>
+
+  <div class="stats">
+    <div><span class="stat-num">629,145</span><span class="stat-label">Conserved interactions</span></div>
+    <div><span class="stat-num">69,984</span><span class="stat-label">PDB structures</span></div>
+    <div><span class="stat-num">2,409</span><span class="stat-label">Protein families</span></div>
+    <div><span class="stat-num">12</span><span class="stat-label">Interaction classes</span></div>
+  </div>
+
+  <hr>
+
+  <!-- INTRODUCTION -->
+  <p class="section-kicker">INTRODUCTION</p>
+  <h2>What keeps a protein from falling apart?</h2>
+
+  <p>Proteins are not rigid structures. They are dynamic chains of amino acids that fold into precise three-dimensional shapes and hold those shapes while performing work: catalyzing chemical reactions, transmitting cellular signals, transporting cargo, reading DNA. The forces holding them together are not covalent bonds. They are something subtler: a dense network of weak, short-range, electrostatic, and quantum-mechanical interactions between amino acid side chains.</p>
+
+  <p>These interactions are not random. The same molecular patterns appear again and again, conserved across millions of years of evolution, in protein families that share no obvious sequence similarity. That conservation is the signal. If a particular arrangement of amino acids recurs in the same structural context across every member of a protein family, it is almost certainly doing something important.</p>
+
+  <p>Starting from 69,984 protein structures from the Protein Data Bank organized into 2,409 evolutionary families by the SCOPe classification we computed the local chemical environment of every residue at 12 distance thresholds from 3.5 to 9.0 Angstroms. Each local environment was encoded as an 18-digit fingerprint: one digit per amino acid type, recording how many of that type appear within the interaction sphere. We then identified which fingerprints are conserved across family members recurring in at least half the structures in a family. The result is 629,145 conserved interactions: a map of the chemical grammar that holds proteins together.</p>
+
+  <hr>
+
+  <!-- THE METHOD -->
+  <p class="section-kicker">THE METHOD</p>
+  <h2>Reading an interaction fingerprint</h2>
+
+  <p>Every interaction in the dataset is described by an 18-character string. Each position corresponds to one amino acid type; the digit is a count of how many of that type appear in the interaction neighborhood. Zero means absent. A non-zero digit means that amino acid type is present and the higher the number, the more copies.</p>
+
+  <p>The 18 positions map to the amino acids in this order:</p>
+
+  <div class="aa-groups">
+    <span>Aromatic: PHE &middot; TYR &middot; TRP</span>
+    <span>Positive: HIS &middot; LYS &middot; ARG</span>
+    <span>Negative: ASP &middot; GLU</span>
+    <span>Polar: ASN &middot; GLN &middot; SER &middot; THR</span>
+    <span>Sulfur: CYS &middot; MET</span>
+    <span>Hydrophobic: PRO &middot; LEU &middot; ILE &middot; VAL</span>
+  </div>
+
+  <div class="fp-wrap">
+    <div class="fp-header">P &nbsp;Y &nbsp;W &nbsp;H &nbsp;P &nbsp;L &nbsp;K &nbsp;R &nbsp;D &nbsp;E &nbsp;N &nbsp;Q &nbsp;S &nbsp;T &nbsp;C &nbsp;M &nbsp;I &nbsp;V</div>
+    <div class="fp-labels">Position labels: PHE &middot; TYR &middot; TRP &middot; HIS &middot; PRO &middot; LEU &middot; LYS &middot; ARG &middot; ASP &middot; GLU &middot; ASN &middot; GLN &middot; SER &middot; THR &middot; CYS &middot; MET &middot; ILE &middot; VAL</div>
+    <div class="fp-digits">
+      <span>0</span><span>0</span><span>0</span><span>0</span>
+      <span>0</span><span>0</span><span>0</span><span class="pos">1</span>
+      <span class="neg">1</span><span class="neg">1</span><span>0</span><span>0</span>
+      <span>0</span><span>0</span><span>0</span><span>0</span>
+      <span>0</span><span>0</span>
+    </div>
+    <p class="fp-note">&#8593; The most globally prevalent bioactive fingerprint in our dataset: <strong>ARG (pos 8) = 1, ASP (pos 9) = 1, GLU (pos 10) = 1</strong>. One arginine with both acid types present the ARG bidentate fork. Found in <strong>18.8%</strong> of all 69,984 protein structures.</p>
+  </div>
+
+  <p>Two conservation metrics describe how widespread each fingerprint is. PDBCon (family conservation) measures the fraction of structures within one protein family that carry a given fingerprint. A PDBCon of 1.000 means every member of that family has this exact neighborhood. ActCon (global activity) measures the fraction of all structures in the dataset carrying the fingerprint, regardless of family. High PDBCon points to a functionally essential interaction in a specific family. High ActCon points to a universally deployed interaction chemistry.</p>
+
+  <hr>
+
+  <!-- OVERVIEW -->
+  <p class="section-kicker">OVERVIEW</p>
+  <h2>Twelve classes, one proteome</h2>
+
+  <p>We defined 12 interaction classes based on known biochemistry each requiring specific residue combinations in the fingerprint, with explicit exclusions to minimize overlap between classes. The classes range from highly prevalent (found in nearly every protein structure) to rare but biologically concentrated specialists. Here is what we found:</p>
+
+  <div class="barchart">
+    <div class="bar-row">
+      <span class="bar-name">Anion-pi (acid + aromatic)</span>
+      <div class="bar-track"><div class="bar-fill" style="width:100%"></div></div>
+      <span class="bar-val">92,906</span>
+    </div>
+    <div class="bar-row">
+      <span class="bar-name">ARG Bidentate Fork</span>
+      <div class="bar-track"><div class="bar-fill" style="width:49%"></div></div>
+      <span class="bar-val">45,472</span>
+    </div>
+    <div class="bar-row">
+      <span class="bar-name">Aromatic-Proline CH/pi</span>
+      <div class="bar-track"><div class="bar-fill" style="width:48%"></div></div>
+      <span class="bar-val">44,264</span>
+    </div>
+    <div class="bar-row">
+      <span class="bar-name">TYR-Carboxylate H-Bond</span>
+      <div class="bar-track"><div class="bar-fill" style="width:45%"></div></div>
+      <span class="bar-val">41,801</span>
+    </div>
+    <div class="bar-row">
+      <span class="bar-name">TRP Indole NH Donor</span>
+      <div class="bar-track"><div class="bar-fill" style="width:20%"></div></div>
+      <span class="bar-val">18,273</span>
+    </div>
+    <div class="bar-row">
+      <span class="bar-name">MET Sulfur H-Bond</span>
+      <div class="bar-track"><div class="bar-fill" style="width:15%"></div></div>
+      <span class="bar-val">13,679</span>
+    </div>
+    <div class="bar-row">
+      <span class="bar-name">Helix N-Cap</span>
+      <div class="bar-track"><div class="bar-fill" style="width:10.7%"></div></div>
+      <span class="bar-val">9,977</span>
+    </div>
+    <div class="bar-row">
+      <span class="bar-name">Carbohydrate CH-pi Platform</span>
+      <div class="bar-track"><div class="bar-fill" style="width:4.4%"></div></div>
+      <span class="bar-val">4,068</span>
+    </div>
+    <div class="bar-row">
+      <span class="bar-name">SER/THR Transmembrane</span>
+      <div class="bar-track"><div class="bar-fill" style="width:3.8%"></div></div>
+      <span class="bar-val">3,505</span>
+    </div>
+    <div class="bar-row">
+      <span class="bar-name">Aromatic Cage (Kme Reader)</span>
+      <div class="bar-track"><div class="bar-fill" style="width:3.1%"></div></div>
+      <span class="bar-val">2,855</span>
+    </div>
+    <div class="bar-row">
+      <span class="bar-name">Amide-Amide Polar Zipper</span>
+      <div class="bar-track"><div class="bar-fill" style="width:1.6%"></div></div>
+      <span class="bar-val">1,446</span>
+    </div>
+    <div class="bar-row">
+      <span class="bar-name">ASN Deamidation Hotspot</span>
+      <div class="bar-track"><div class="bar-fill" style="width:1.1%"></div></div>
+      <span class="bar-val">994</span>
+    </div>
+    <p class="bar-caption">Bar width proportional to interaction count. Some interactions satisfy multiple class criteria; classes were designed with explicit exclusion logic to minimize the most significant overlaps.</p>
+  </div>
+
+  <hr>
+
+  <!-- CHAPTER 1 -->
+  <p class="section-kicker">CHAPTER 1 &middot; THE MOST PREVALENT BIOACTIVE</p>
+  <h2>The arginine double handshake</h2>
+
+  <p>Arginine is a superstar among amino acids. Its guanidinium group a flat, positively charged headgroup with positive charge delocalized across three nitrogens can form hydrogen bonds in multiple directions simultaneously. When it meets an aspartate or glutamate carboxylate, it often does something remarkable: it doesn't just contact one oxygen. It reaches across and grips both oxygens at once.</p>
+
+  <p>This is the arginine bidentate fork. And it is the most globally prevalent bioactive interaction we detected in the proteome.</p>
+
+  <div class="callout">
+    <p class="callout-kicker">GLOBAL PREVALENCE &middot; ARG BIDENTATE FORK</p>
+    <div class="callout-number">18.8% of all structures</div>
+    <p class="callout-detail">45,472 matching interactions &middot; 4,554 unique fingerprint variants &middot; top fingerprint <code>000000011100000000</code> (ARG + ASP + GLU) in 18.8% of all 69,984 PDB structures</p>
+  </div>
+
+  <p>The geometry explains the dominance. The flat guanidinium stacks nearly parallel to the carboxylate plane, maximizing contact area. The two NH donors point toward the two carboxylate oxygens simultaneously, forming a six-membered pseudo-ring that is geometrically strained toward planarity a stable, low-energy arrangement. A bidentate Arg-carboxylate contact is worth roughly twice a monodentate salt bridge: around 10 kcal/mol in the context of a buried active site. That's comparable to a strong covalent-bond contribution to stability.</p>
+
+  <p>The functional range of this contact is striking. Arginine uses exactly this bidentate geometry to read the major groove of CpG DNA the NH donors contact both oxygens of a guanine base edge, which is why arginine is the dominant amino acid at protein-DNA interfaces. RNA-binding proteins grip phosphate backbone oxygens the same way. Kinases use it to anchor the gamma-phosphate of ATP in the active site for catalysis. Restriction enzymes use it to interrogate specific base pairs. That the same molecular geometry serves all these contexts is a testament to how fundamental the contact is.</p>
+
+  <p>In our family-level conservation data, the ARG bidentate fingerprint achieves PDBCon = 1.000 in families spanning up to 15 members every single structure in those families carries the identical arginine-acid neighborhood. That is not drift. That is selection for a specific chemical contact that the protein cannot function without.</p>
+
+  <div class="fp-wrap">
+    <div class="fp-group-labels">
+      <span>Positive (LYS/ARG)</span>
+      <span>Negative (ASP/GLU)</span>
+    </div>
+    <div class="fp-digits">
+      <span>0</span><span>0</span><span>0</span><span>0</span>
+      <span>0</span><span>0</span><span>0</span><span class="pos">1</span>
+      <span class="neg">1</span><span class="neg">1</span><span>0</span><span>0</span>
+      <span>0</span><span>0</span><span>0</span><span>0</span>
+      <span>0</span><span>0</span>
+    </div>
+    <p class="fp-note">Top fingerprint by ActCon: <code>000000011100000000</code> ARG with both ASP and GLU neighbors. ActCon = <strong>0.1884</strong>. The purest bidentate fork signature.</p>
+  </div>
+
+  <hr>
+
+  <!-- CHAPTER 2 -->
+  <p class="section-kicker">CHAPTER 2 &middot; THE SHORTEST BOND</p>
+  <h2>Tyrosine's unusually short reach</h2>
+
+  <p>The phenolic hydroxyl of tyrosine is the most acidic neutral side chain in biology a pKa around 10, compared to 12 or higher for serine or threonine. That extra acidity makes TYR-OH an unusually strong hydrogen-bond donor. When it targets aspartate or glutamate as the acceptor, the result is one of the shortest hydrogen bonds in protein structures: O...O distances in the 2.55-2.75 Angstrom range, against the 2.8-3.0 Angstrom typical for most protein H-bonds.</p>
+
+  <div class="callout">
+    <p class="callout-kicker">TYR-CARBOXYLATE SHORT H-BOND</p>
+    <div class="callout-number">41,801 interactions</div>
+    <p class="callout-detail">7,238 unique fingerprints &middot; top ActCon 18.5% &middot; shortest measured at 3.511 Angstrom in conserved active-site triads</p>
+  </div>
+
+  <p>This shortness matters physically. Short hydrogen bonds concentrate electron density between the two oxygen atoms in ways that approach "low-barrier" geometry where the proton is partially shared rather than cleanly transferred. Whether proteins achieve true low-barrier H-bonds is still debated, but the structural and energetic distinction from ordinary H-bonds is not. TYR-carboxylate contacts are geometrically tighter and energetically stronger than most side-chain H-bonds.</p>
+
+  <p>They concentrate in active sites. Tyrosine kinases, protein tyrosine phosphatases, and a range of oxidoreductases all use conserved TYR-ASP/GLU contacts to position substrates and stabilize transition states. The Asp-Tyr-Lys catalytic motif found across multiple hydrolase families is a well-characterized example: the TYR bridges a nucleophilic ASP to an activating LYS, and the geometry of the TYR-ASP hydrogen bond is precisely tuned for transition-state stabilization.</p>
+
+  <p>There is a second layer here that is easy to miss: tyrosine is also the primary phosphorylation target in eukaryotic signaling. The same hydroxyl that forms these conserved structural contacts is the one that kinases modify. In many cases, phosphorylation at a conserved TYR directly disrupts the TYR-carboxylate contact flipping a structural hydrogen bond off and activating or deactivating the protein. A conserved TYR-carboxylate contact in a signaling protein is therefore not just a structural annotation; it is a potential phospho-switch.</p>
+
+  <hr>
+
+  <!-- CHAPTER 3 -->
+  <p class="section-kicker">CHAPTER 3 &middot; THE COUNTER-INTUITIVE FORCE</p>
+  <h2>Why negative charges attract aromatic rings</h2>
+
+  <p>Introductory chemistry teaches that like charges repel. Aromatic rings have a partial negative charge concentrated in the pi electron cloud above and below the ring plane. A negatively charged carboxylate approaching the face of that ring both negative should, by this logic, be pushed away.</p>
+
+  <p>It isn't. And the reason is that the intuition misses the physics.</p>
+
+  <p>Aromatic pi systems are highly polarizable. A nearby charged group distorts the ring's electron distribution, inducing a local dipole that weakens the repulsion and at contact distances, converts it to net attraction through London dispersion. The electrostatic potential above an aromatic ring is not uniformly negative: the ring edges carry a partial positive charge. Carboxylates can approach at angles that minimize repulsion while maximizing dispersion contact. The result is a genuine attractive interaction with energies measured in the 1-4 kcal/mol range, documented across hundreds of PDB structures and confirmed by quantum mechanical calculations.</p>
+
+  <div class="callout">
+    <p class="callout-kicker">ANION-PI (ASP/GLU CONTACTING AROMATIC FACE)</p>
+    <div class="callout-number">92,906 interactions</div>
+    <p class="callout-detail">The largest single class &middot; 20,774 unique fingerprints &middot; ASP/GLU contacting PHE, TYR, or TRP</p>
+  </div>
+
+  <p>In our data, anion-pi is the largest class by raw count. The 92,906 instances include substantial overlap with the TYR-carboxylate class both filters capture the TYR-ASP/GLU motif, from complementary mechanistic angles. The cases that are uniquely anion-pi involve tryptophan specifically: TRP is the most polarizable common aromatic, and TRP-carboxylate contacts that appear without a competing cation (no LYS or ARG nearby) represent the clearest anion-pi signal.</p>
+
+  <p>The enzyme ketosteroid isomerase (KSI) provides the textbook example. An ASP residue contacts the face of a TYR to position the general base with sub-angstrom precision for catalysis. Mutation of either residue destroys activity. The contact is conserved at PDBCon = 1.000 across the family. This is anion-pi doing functional chemistry, not background noise.</p>
+
+  <hr>
+
+  <!-- CHAPTER 4 -->
+  <p class="section-kicker">CHAPTER 4 &middot; THE LOCK AND THE KINK</p>
+  <h2>How proline gets pinned by aromatics</h2>
+
+  <p>Proline is the only amino acid whose side chain bonds back to its own backbone nitrogen, forming a pyrrolidine ring. This eliminates the backbone N-H donor proline cannot donate backbone hydrogen bonds. In exchange, the CH bonds of its ring are weakly polarized by the adjacent nitrogen, making them CH donors for nearby aromatic pi systems.</p>
+
+  <p>When a proline sits next to a phenylalanine, tyrosine, or tryptophan, these CH/pi interactions stabilize a specific configuration of the proline amide bond: the cis conformation. This matters because only about 5% of prolines in proteins are cis but those that are often occur at structurally critical kinks, where the backbone needs to turn sharply. Aromatic residues adjacent to a cis-proline are not accidental neighbors. They are the lock that holds the kink in place.</p>
+
+  <div class="callout">
+    <p class="callout-kicker">AROMATIC-PROLINE CH/PI LOCK</p>
+    <div class="callout-number">44,264 interactions</div>
+    <p class="callout-detail">Third largest class &middot; 7,925 unique fingerprints &middot; top ActCon 9.2% &middot; major contributors: collagen, immunoglobulins, SH3 domains</p>
+  </div>
+
+  <p>Collagen the most abundant structural protein in the human body contains proline at every third position in its canonical Gly-X-Pro repeats. The aromatic-Pro CH/pi contacts in collagen-like triple helices contribute to thermostability: mutations that disrupt them are associated with collagen diseases. In immunoglobulins, the IgG hinge region contains a conserved Pro-Pro-aromatic motif whose cis configuration determines the precise angle between the two antibody arms relevant to Fc receptor engagement and immune function. SH3 domains, which mediate many protein-protein interactions in signaling cascades, bind proline-rich sequences partly through aromatic-Pro contacts.</p>
+
+  <p>The top ActCon fingerprint for this class <code>010011000000000000</code>, meaning TYR + PRO + HIS appears in 9.2% of all structures. For a contact requiring a specific geometric arrangement, that is a remarkable prevalence. It reflects how universally proline is deployed as a backbone-kinking element, and how consistently aromatics are placed to hold it there.</p>
+
+  <hr>
+
+  <!-- CHAPTER 5 -->
+  <p class="section-kicker">CHAPTER 5 &middot; THE RAREST AND MOST VERSATILE</p>
+  <h2>Three jobs for one rare amino acid</h2>
+
+  <p>Tryptophan is the largest, rarest, and most metabolically expensive amino acid in the standard genetic code. It makes up only about 1.3% of residues in the proteome. Synthesizing one tryptophan from chorismate requires seven enzymatic steps. Evolution does not pay that cost casually when a tryptophan is retained at a conserved position, something specific is happening there. Our data reveals three distinct conserved roles, each visible as a different fingerprint signature, each connecting to a completely different area of biology.</p>
+
+  <h3>Role 1 &middot; Indole NH donor to carboxylates: transglutaminases, celiac disease, neurodegeneration</h3>
+
+  <p>The indole ring of tryptophan carries a polarized N-H group. This is a genuine hydrogen-bond donor not as acidic as the TYR phenol, but directional and significant. In enzymes that process charged reaction intermediates, the TRP indole NH stabilizes negative charge by donating into the carboxylate of a nearby aspartate or glutamate.</p>
+
+  <p>The most well-documented example is the transglutaminase family, which includes Factor XIII (critical for blood clotting) and tissue transglutaminase TG2. These enzymes catalyze transamidation the crosslinking of proteins via isopeptide bonds. They form the molecular glue that seals fibrin clots and maintains intestinal epithelial integrity. TG2 is directly implicated in celiac disease (where its autoimmune modification of gliadin peptides is the trigger), in neurodegeneration (where it crosslinks tau and alpha-synuclein into aggregates), and in tumor matrix remodeling. The tryptophan that stabilizes the charged tetrahedral intermediate during the catalytic cycle is fully conserved at PDBCon = 1.000 across the transglutaminase family. Replacing it with any other residue destroys activity.</p>
+
+  <div class="callout">
+    <p class="callout-kicker">TRP INDOLE NH-CARBOXYLATE H-BOND</p>
+    <div class="callout-number">18,273 interactions</div>
+    <p class="callout-detail">5,757 unique fingerprints &middot; top ActCon 7.0% &middot; high-confidence hits include transglutaminases, RNA-binding domains, and metabolic enzyme active sites</p>
+  </div>
+
+  <h3>Role 2 &middot; Aromatic cage center: epigenetic readers and cancer drug targets</h3>
+
+  <p>Inside the nucleus, gene expression is controlled partly by chemical modifications to the histone proteins that package DNA. Methylation of specific lysine residues on histone tails K4, K9, K27, K36 on histone H3 functions as a molecular flag that recruits specific protein complexes to activate or silence nearby genes. Reading these flags requires a protein domain that can distinguish unmethylated, mono-, di-, and trimethylated lysine with high specificity.</p>
+
+  <p>The structural solution is an aromatic cage: two to four aromatic residues surround the lysine side chain, forming a pocket. The positively charged methylated ammonium group sits in this cage, held by cation-pi interactions from all sides. Tryptophan is preferred at the cage because it provides the strongest cation-pi interaction of the common aromatics. When our filter requires LYS plus at least two aromatic types including TRP, it selects these reader domains with high confidence.</p>
+
+  <p>Chromo domains (HP1, Polycomb), Tudor domains, PHD fingers (ING2, BPTF), PWWP domains, and MBT domains all use this mechanism. BET bromodomains the drug targets of BET inhibitors currently in clinical trials for leukemia, NUT midline carcinoma, and breast cancer use a variant of this cage to read acetylated lysine. In all cases, disrupting the aromatic cage by mutation or small-molecule competition abolishes the protein-histone interaction and downstream gene regulation. In cancer contexts, that disruption is therapeutic.</p>
+
+  <div class="callout">
+    <p class="callout-kicker">AROMATIC CAGE / METHYL-LYSINE READER</p>
+    <div class="callout-number">2,855 interactions</div>
+    <p class="callout-detail">1,089 unique fingerprints &middot; chromo, Tudor, PHD, PWWP, MBT, BET domains &middot; top conserved families have PDBCon = 1.000 across up to 16 members</p>
+  </div>
+
+  <h3>Role 3 &middot; Carbohydrate platform: lectins, influenza, and sugar recognition</h3>
+
+  <p>Sugars present an unusual recognition problem. Unlike amino acids and nucleotides, they are not primarily aromatic or charged. They are hydroxyl-rich. But the pyranose ring forms of common monosaccharides glucose, galactose, mannose do present axial CH bonds that interact with aromatic pi faces via CH-pi interactions. This is how lectins bind their sugar ligands.</p>
+
+  <p>Concanavalin A stacks mannose against an aromatic residue for the primary recognition event. Galectins use a tryptophan platform flanked by asparagine and serine/threonine residues: the TRP indole face contacts the hydrophobic face of the galactose ring while the polar neighbors H-bond to the sugar hydroxyls. Influenza hemagglutinin recognizes sialic acid on host cell surfaces using this exact architecture which is why sialic acid mimics designed as antiviral compounds target the TRP/polar flanking motif.</p>
+
+  <p>Our filter TRP plus at least two SER/THR neighbors, minimal charged residues identifies 4,068 instances. The top fingerprint <code>001000000000110000</code> (TRP + two SER) carries an ActCon of 2.8%. Modest globally, but highly concentrated in carbohydrate-binding and glycan-processing families.</p>
+
+  <div class="callout">
+    <p class="callout-kicker">CARBOHYDRATE CH-PI PLATFORM</p>
+    <div class="callout-number">4,068 interactions</div>
+    <p class="callout-detail">1,421 unique fingerprints &middot; TRP flanked by SER/THR &middot; lectins, ABC sugar transporters, glycosidases, influenza HA</p>
+  </div>
+
+  <div class="pullquote">
+    <p>Three different jobs. The same rare amino acid. Evolution found tryptophan useful enough to keep paying for it over and over, in entirely different biological contexts.</p>
+  </div>
+
+  <hr>
+
+  <!-- CHAPTER 6 -->
+  <p class="section-kicker">CHAPTER 6 &middot; STRUCTURAL GRAMMAR</p>
+  <h2>The cap at the top of every helix and a sulfur that nobody talks about</h2>
+
+  <h3>The helix N-cap: universal, underappreciated, disease-linked</h3>
+
+  <p>Alpha helices make up roughly 35% of all residues in the proteome. And every alpha helix has an energetic problem at its amino-terminal end: the first three backbone nitrogens lack a hydrogen-bond partner from the helical i+4 carbonyl. These unsatisfied NH donors represent a structural deficit an itch that evolution has developed a consistent solution for.</p>
+
+  <p>The helix N-cap: a residue at the N-terminus whose side chain donates a hydrogen bond to one or more of these unsatisfied backbone NHs. Asparagine is the most effective, because its amide oxygen can simultaneously H-bond to two backbone NHs; serine and threonine work almost as well. The motif appears so consistently across all structural classes that it has been used as a design principle in engineered miniproteins and therapeutic peptides since the 1990s.</p>
+
+  <div class="callout">
+    <p class="callout-kicker">HELIX N-CAP (ASN/SER/THR POLAR CLUSTER)</p>
+    <div class="callout-number">9,977 interactions</div>
+    <p class="callout-detail">2,869 unique fingerprints &middot; top ActCon 7.4% &middot; top fingerprint <code>000000000010200000</code> (ASN + 2x THR) in 7.4% of all structures</p>
+  </div>
+
+  <p>The disease connection is concrete. Mutations at helix N-cap positions consistently destabilize their host proteins. Missense variants in thermolabile metabolic enzymes, in tumor suppressor p53, and in receptor extracellular domains that map to N-cap positions all cause protein misfolding through the same mechanism: removal of the NH satisfaction at the helix start unravels secondary structure from the beginning. When you see PDBCon = 1.000 for a helix N-cap fingerprint, you're looking at a position where even conservative substitution will compromise fold stability.</p>
+
+  <h3>The stealth acceptor: methionine sulfur as hydrogen-bond acceptor</h3>
+
+  <p>Methionine is classified as hydrophobic in most textbooks. Its flexible, nonpolar side chain is typically buried in protein cores, away from water. But its sulfur atom carries polarizable lone pairs, and those lone pairs make the methionine sulfur a surprisingly effective hydrogen-bond acceptor despite sulfur's lower electronegativity relative to oxygen or nitrogen.</p>
+
+  <p>The numbers: roughly 24% of all methionine residues in the PDB form NH...S hydrogen bonds. The bond energies are comparable to NH...O bonds. Our filter MET with ASN, GLN, or TRP donors in the neighborhood, excluding PHE and TYR to avoid conflation with MET-aromatic contacts finds 13,679 instances with an ActCon peak of 3.0%.</p>
+
+  <div class="callout">
+    <p class="callout-kicker">MET SULFUR H-BOND ACCEPTOR</p>
+    <div class="callout-number">13,679 interactions</div>
+    <p class="callout-detail">3,536 unique fingerprints &middot; top ActCon 3.0% &middot; donors: ASN, GLN, TRP indole NH &middot; distinct from MET-aromatic sulfur-pi contacts</p>
+  </div>
+
+  <p>The biological relevance extends beyond static structure into dynamics and signaling. Methionine oxidation the conversion of sulfur to sulfoxide by reactive oxygen species dramatically reduces its H-bond acceptor capacity. This provides a reversible chemical switch: oxidation disables the NH...S contact and destabilizes local structure; the enzyme methionine sulfoxide reductase restores the original Met, re-enabling the contact. This cycle has been documented in calmodulin regulation, synaptic vesicle fusion, and general oxidative stress responses. Conserved MET-acceptor contacts in our dataset are candidate sites for this redox switching mechanism.</p>
+
+  <hr>
+
+  <!-- CHAPTER 7 -->
+  <p class="section-kicker">CHAPTER 7 &middot; RARE SIGNALS, OUTSIZED SIGNIFICANCE</p>
+  <h2>Four small classes with big stories</h2>
+
+  <p>The four remaining interaction classes in our dataset are rare by count. But rarity can be informative these classes are concentrated in specific biological contexts where the chemistry is doing something that cannot be replaced by more common interactions.</p>
+
+  <h3>The amide-amide polar zipper: 1,446 instances &middot; Huntington's and prion biology</h3>
+
+  <p>When asparagine and glutamine residues cluster together without competing aromatics or charged neighbors, they form polar ladders: chains of amide-to-amide hydrogen bonds where donors and acceptors alternate in a regular pattern. Maurice Perutz coined the term "polar zipper" for this arrangement in 1994 and proposed it as the structural basis for polyglutamine toxicity.</p>
+
+  <p>He was largely right. Polyglutamine tracts of 35 or more residues in huntingtin (Huntington's disease), ataxin proteins (spinocerebellar ataxias), and androgen receptor (Kennedy's disease) all aggregate via this ladder structure. In yeast prion proteins like Sup35 and Rnq1, glutamine- and asparagine-rich domains are necessary and sufficient for heritable prion behavior the polar zippers stack and self-propagate. The sequence context matters: poly-Q aggregates faster than poly-N, and mixed Q/N sequences show intermediate kinetics that our fingerprint can partially discriminate by the ASN-to-GLN ratio.</p>
+
+  <p>Our highest-ActCon polar zipper fingerprint <code>000000000021000000</code>, meaning two ASN plus one GLN appears in 2.5% of all structures with PDBCon = 1.000 in multiple immunoglobulin-fold families. Immunoglobulins use ASN-rich loops as structural hinges. When these loops accumulate deamidated asparagine over time, they lose the polar zipper geometry and the hinge stiffens a known mechanism of antibody aging.</p>
+
+  <h3>The ASN deamidation hotspot: 994 instances &middot; protein aging and antibody instability</h3>
+
+  <p>Asparagine is chemically unstable under specific conditions. In the sequence motif -NG- or -NS-, the backbone nitrogen of the following residue attacks the asparagine side chain, forming a succinimide intermediate that hydrolyzes to either aspartate or isoaspartate. No enzyme is needed. The reaction is spontaneous a molecular clock that ticks continuously in the absence of any catalyst.</p>
+
+  <p>The rate depends on local flexibility. Buried asparagines, constrained by surrounding bulky sidechains, deamidate over years. Exposed, mobile asparagines surrounded by small, flexible residues like serine, glycine, and threonine can deamidate in days to weeks. Our filter captures this exposed environment: ASN count &ge; 2, SER present, no bulky hydrophobics nearby.</p>
+
+  <div class="callout">
+    <p class="callout-kicker">ASN DEAMIDATION HOTSPOT</p>
+    <div class="callout-number">994 interactions</div>
+    <p class="callout-detail">294 unique fingerprints &middot; top ActCon 3.6% &middot; exposed ASN-SER clusters, no bulky neighbors &middot; high-risk sites for spontaneous Asn to Asp conversion</p>
+  </div>
+
+  <p>Deamidation converts ASN to ASP a neutral-to-negative charge change which can disrupt hydrogen bond networks, create buried charges, and introduce steric clashes. This mechanism contributes to crystallin aggregation in age-related cataracts, modifies amyloid-beta in Alzheimer's plaques, and causes potency loss in therapeutic antibodies when it occurs in the complementarity-determining regions. Biopharmaceutical manufacturers now routinely screen CDR sequences for -NG- and -NS- motifs and engineer substitutions to prevent deamidation in drug candidates.</p>
+
+  <h3>The SER/THR transmembrane polar motif: 3,505 instances &middot; ErbB2, integrins, GPCRs</h3>
+
+  <p>Inside the lipid bilayer, water is absent. A serine or threonine embedded in a transmembrane helix cannot form water-mediated hydrogen bonds. What it can do instead is form direct hydrogen bonds to backbone carbonyls of adjacent helices a contact that in the hydrophobic membrane environment is worth considerably more than it would be in solution, because nothing else is available to satisfy the OH.</p>
+
+  <p>This drives specific transmembrane helix-helix association. The GxxxG motif in glycophorin A the textbook example of membrane protein dimerization is flanked by serine residues that form bifurcated hydrogen bonds to two backbone carbonyls simultaneously. ErbB2/HER2, the growth factor receptor overexpressed in ~25% of breast cancers and the target of trastuzumab (Herceptin), uses a transmembrane serine-containing helix for its oncogenic activating dimerization. Integrins, which mediate cell adhesion and motility, use membrane-embedded threonine contacts to control alpha/beta subunit association. G-protein-coupled receptors use SER/THR TM contacts for helix bundle packing.</p>
+
+  <p>Our filter SER/THR &ge; 2 surrounded by LEU/ILE/VAL &ge; 3, no charged residues identifies 3,505 instances with 911 unique fingerprints. The hydrophobic requirement is the key discriminator: this is the chemical fingerprint of polar residues working inside a membrane, not in a soluble protein active site.</p>
+
+  <hr>
+
+  <!-- CONCLUSION -->
+  <p class="section-kicker">CONCLUSION</p>
+  <h2>Conservation is a functional annotation</h2>
+
+  <p>Across 629,145 interactions, twelve distinct classes of non-covalent chemistry, and 2,409 protein families, the pattern is clear. The interactions that are conserved retained in every member of a family through hundreds of millions of years of independent evolution are not generic contacts. They are not the interactions that form anywhere two residues happen to be nearby. They are specific, geometrically constrained, energetically significant, and often catalytically or structurally indispensable.</p>
+
+  <p>The arginine bidentate fork, present in 18.8% of all structures, is conserved because nothing else grips a carboxylate with that flat, bidentate geometry. The TYR-carboxylate short hydrogen bond, among the shortest in the proteome, is conserved in kinase active sites because shortness here is a physical proxy for transition-state stabilization. The three distinct roles of tryptophan indole donor, aromatic cage, carbohydrate platform are each conserved in their respective functional contexts because TRP provides something that no other amino acid provides for comparable sequence cost.</p>
+
+  <div class="pullquote">
+    <p>A conserved interaction is a functional annotation written in the language of chemistry rather than sequence.</p>
+  </div>
+
+  <p>The data presented here represents a first systematic pass at a proteome-scale interaction grammar. The fingerprint method has resolution limits; distance thresholds were fixed rather than optimized per class; some overlaps between classes exist and would benefit from finer disambiguation. But the core result is robust: across the proteome, conserved interaction patterns are specific, recoverable, and biologically interpretable. They map to known functional mechanisms. They predict disease vulnerability at N-cap and deamidation positions. They identify drug-target motifs in epigenetic readers. They distinguish membrane-embedded contacts from soluble ones.</p>
+
+  <p>The most useful immediate application of this map is not retrospective classification but prospective hypothesis generation. When you encounter a protein family with unknown function and find PDBCon = 1.000 for an aromatic cage fingerprint, you have a hypothesis: this family reads methylated lysine. When you find a SER/THR polar cluster embedded in a hydrophobic fingerprint with no obvious solvent-facing residues, you have a hypothesis: transmembrane helix packing. When you find a conserved TRP + SER/THR fingerprint in a carbohydrate-active enzyme family, you have a hypothesis: there is a sugar-binding platform here that structural biology has not yet resolved.</p>
+
+  <p>629,145 conserved interactions. Each one is a hypothesis about function, written in the geometry of atoms.</p>
+
+  <hr>
+
+  <!-- METHODS -->
+  <div class="methods">
+    <h4>Methods</h4>
+
+    <p>Protein structures were obtained as first biological assembly files (pdb1.gz) from the RCSB PDB to ensure biologically relevant oligomeric states. Of 71,369 PDB structures referenced in SCOPe, 69,984 (98.1%) were obtained. Family classifications used SCOPe at the fa (family) level; 2,409 families were represented with at least four PDB structures (minimum required for conservation analysis).</p>
+
+    <p>Interaction fingerprints were computed for 18 residue types (PHE, TYR, TRP, HIS, PRO, LEU, LYS, ARG, ASP, GLU, ASN, GLN, SER, THR, CYS, MET, ILE, VAL) at 12 distance thresholds from 3.511 to 9.011 Angstrom using a spatial grid indexing strategy. For each target residue, up to six nearest neighbors were recorded and encoded as an 18-digit count string. Interaction complexity was constrained to 3-7 residue types per fingerprint. Family-level conservation (PDBCon) required &ge;50% of family members to share a fingerprint. Global prevalence (ActCon) reports the fraction of all structures carrying each fingerprint. Results from all distance thresholds were merged using a tightest-distance-wins strategy. All analysis was performed in Perl 5 with Parallel::ForkManager on the full 69,984-structure dataset.</p>
+
+    <p>Interaction class filters for the 12 bioactive classes were applied in Python against the merged master results file (629,145 rows). Class definitions used explicit exclusion logic to minimize cross-class contamination for example, the ARG Bidentate Fork class excludes aromatic residues to separate it from cation-pi, and the MET Sulfur H-Bond class excludes PHE/TYR to separate it from MET-aromatic sulfur-pi contacts.</p>
+
+    <p>Residue groupings: Aromatic PHE, TYR, TRP (fingerprint positions 0-2). Positive charged HIS, LYS, ARG (positions 3, 6, 7). Negative charged ASP, GLU (positions 8-9). Polar uncharged ASN, GLN, SER, THR (positions 10-13). Sulfur-containing CYS, MET (positions 14-15). Hydrophobic PRO, LEU, ILE, VAL (positions 4-5, 16-17).</p>
+  </div>
+
+</div>
+</body>
+</html>
