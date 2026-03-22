@@ -365,6 +365,109 @@
             letter-spacing: 0.06em;
         }
 
+        /* ── FORMULA TABLE ── */
+        .formula-table-wrap {
+            margin: 28px 0 8px 0;
+            overflow-x: auto;
+        }
+
+        .formula-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 8pt;
+        }
+
+        .formula-table caption {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 7.5pt;
+            letter-spacing: 0.10em;
+            text-transform: uppercase;
+            color: #aaaaaa;
+            text-align: left;
+            padding-bottom: 8px;
+        }
+
+        .formula-table thead tr {
+            border-bottom: 2px solid #1a1a1a;
+        }
+
+        .formula-table thead th {
+            font-size: 7pt;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #888888;
+            padding: 0 12px 8px 0;
+            text-align: left;
+            white-space: nowrap;
+        }
+
+        .formula-table thead th:last-child,
+        .formula-table tbody td:last-child,
+        .formula-table tfoot td:last-child {
+            text-align: right;
+            padding-right: 0;
+        }
+
+        .formula-table tbody tr {
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .formula-table tbody tr:last-child {
+            border-bottom: none;
+        }
+
+        .formula-table tbody td {
+            padding: 7px 12px 7px 0;
+            color: #1a1a1a;
+            vertical-align: middle;
+        }
+
+        .formula-table tbody td.ing-name-cell {
+            font-weight: 600;
+        }
+
+        .formula-table tbody td.category-cell {
+            color: #888888;
+        }
+
+        .formula-table tbody td.dose-cell {
+            text-align: right;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .formula-table tbody td.dv-cell {
+            text-align: right;
+            color: #888888;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .formula-table tfoot tr:first-child td {
+            border-top: 1px solid #e0e0e0;
+            padding-top: 10px;
+        }
+
+        .formula-table tfoot td {
+            padding: 4px 12px 4px 0;
+            color: #888888;
+            font-size: 7.5pt;
+        }
+
+        .formula-table tfoot td.tfoot-label {
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: #555555;
+        }
+
+        .formula-table tfoot tr.total-row td {
+            font-weight: 700;
+            color: #1a1a1a;
+            border-top: 1px solid #1a1a1a;
+            padding-top: 8px;
+        }
+
         /* ── PRINT STYLES ── */
         @media print {
             body {
@@ -504,11 +607,149 @@
             </div>
             <div class="ingredient-line">
                 <span class="ing-name">Vitamin B12</span>
-                <span class="ing-dose">0.5 mcg</span>
+                <span class="ing-dose">500 mcg</span>
             </div>
             <div class="pillar-note">Enzogenol® — NZ radiata pine bark extract — has peer-reviewed evidence for cerebrovascular health and zero presence in any competitor product. A genuine differentiator with a sourcing story.</div>
         </div>
 
+    </div>
+
+    <div class="formula-table-wrap">
+        <table class="formula-table">
+            <caption>Full Ingredient Stack &mdash; Per serving: 2 capsules (size 0)</caption>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Ingredient</th>
+                    <th>Form / Grade</th>
+                    <th>Category</th>
+                    <th>Per Cap (mg)</th>
+                    <th>Per Serving (mg)</th>
+                    <th>% DV</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td class="ing-name-cell">L-Tyrosine</td>
+                    <td>Free-form amino acid, USP</td>
+                    <td class="category-cell">Nootropic</td>
+                    <td class="dose-cell">75.000</td>
+                    <td class="dose-cell">150.000</td>
+                    <td class="dv-cell">--</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td class="ing-name-cell">L-Theanine</td>
+                    <td>Free-form amino acid, USP</td>
+                    <td class="category-cell">Nootropic</td>
+                    <td class="dose-cell">75.000</td>
+                    <td class="dose-cell">150.000</td>
+                    <td class="dv-cell">--</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td class="ing-name-cell">CDP-Choline</td>
+                    <td>Citicoline (generic), food grade</td>
+                    <td class="category-cell">Nootropic</td>
+                    <td class="dose-cell">125.000</td>
+                    <td class="dose-cell">250.000</td>
+                    <td class="dv-cell">--</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td class="ing-name-cell">Enzogenol&#174;</td>
+                    <td>NZ pine bark extract, best ORAC</td>
+                    <td class="category-cell">Neuroprotectant</td>
+                    <td class="dose-cell">75.000</td>
+                    <td class="dose-cell">150.000</td>
+                    <td class="dv-cell">--</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td class="ing-name-cell">Phosphatidylserine</td>
+                    <td>PS 20%, sunflower-derived, food grade</td>
+                    <td class="category-cell">Neuroprotectant</td>
+                    <td class="dose-cell">50.000</td>
+                    <td class="dose-cell">100.000</td>
+                    <td class="dv-cell">--</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td class="ing-name-cell">Inositol</td>
+                    <td>Myo-inositol, USP</td>
+                    <td class="category-cell">Nootropic</td>
+                    <td class="dose-cell">50.000</td>
+                    <td class="dose-cell">100.000</td>
+                    <td class="dv-cell">--</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td class="ing-name-cell">Niacinamide</td>
+                    <td>Niacinamide (B3), USP</td>
+                    <td class="category-cell">Vitamin</td>
+                    <td class="dose-cell">37.500</td>
+                    <td class="dose-cell">75.000</td>
+                    <td class="dv-cell">469%</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td class="ing-name-cell">GABA</td>
+                    <td>Gamma-aminobutyric acid, food grade</td>
+                    <td class="category-cell">Nootropic</td>
+                    <td class="dose-cell">25.000</td>
+                    <td class="dose-cell">50.000</td>
+                    <td class="dv-cell">--</td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td class="ing-name-cell">Vitamin B6</td>
+                    <td>Pyridoxal-5-Phosphate (P-5-P)</td>
+                    <td class="category-cell">Vitamin</td>
+                    <td class="dose-cell">0.625</td>
+                    <td class="dose-cell">1.250</td>
+                    <td class="dv-cell">74%</td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td class="ing-name-cell">Vitamin D3</td>
+                    <td>Cholecalciferol, 100 IU/mg beadlet</td>
+                    <td class="category-cell">Vitamin</td>
+                    <td class="dose-cell">0.013</td>
+                    <td class="dose-cell">0.025</td>
+                    <td class="dv-cell">125%</td>
+                </tr>
+                <tr>
+                    <td>11</td>
+                    <td class="ing-name-cell">Vitamin B12</td>
+                    <td>Methylcobalamin</td>
+                    <td class="category-cell">Vitamin</td>
+                    <td class="dose-cell">0.250</td>
+                    <td class="dose-cell">0.500</td>
+                    <td class="dv-cell">20,833%</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="4" class="tfoot-label">Active subtotal</td>
+                    <td class="dose-cell">513.388</td>
+                    <td class="dose-cell">1,026.775</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="tfoot-label">Excipients (est.)</td>
+                    <td class="dose-cell">~20</td>
+                    <td class="dose-cell">~40</td>
+                    <td></td>
+                </tr>
+                <tr class="total-row">
+                    <td colspan="4" class="tfoot-label">Total fill (est.)</td>
+                    <td class="dose-cell">~533</td>
+                    <td class="dose-cell">~1,067</td>
+                    <td></td>
+                </tr>
+            </tfoot>
+        </table>
     </div>
 
 
