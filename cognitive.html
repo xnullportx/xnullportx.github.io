@@ -1,0 +1,589 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cognitive PM Supplement — Pitch Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            font-size: 11pt;
+            line-height: 1.7;
+            color: #1a1a1a;
+            background: #ffffff;
+            max-width: 780px;
+            margin: 0 auto;
+            padding: 60px 60px 80px 60px;
+        }
+
+        /* ── HEADER BLOCK ── */
+        .header-block {
+            border-bottom: 2px solid #1a1a1a;
+            padding-bottom: 24px;
+            margin-bottom: 36px;
+        }
+
+        .header-block .label {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 8pt;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: #666666;
+            margin-bottom: 10px;
+        }
+
+        .header-block h1 {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 26pt;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: #0d0d0d;
+            margin-bottom: 6px;
+        }
+
+        .header-block .subtitle {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 12pt;
+            font-weight: 400;
+            color: #444444;
+            margin-bottom: 16px;
+        }
+
+        .meta-row {
+            display: flex;
+            gap: 32px;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 8.5pt;
+            color: #888888;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+
+        /* ── SECTION HEADINGS ── */
+        h2 {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 8pt;
+            font-weight: 700;
+            letter-spacing: 0.20em;
+            text-transform: uppercase;
+            color: #888888;
+            margin-top: 44px;
+            margin-bottom: 14px;
+            padding-bottom: 6px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        h3 {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 10pt;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-top: 22px;
+            margin-bottom: 6px;
+            letter-spacing: 0.01em;
+        }
+
+        /* ── BODY TEXT ── */
+        p {
+            margin-bottom: 14px;
+            color: #1a1a1a;
+        }
+
+        /* ── PULL STAT ROW ── */
+        .stat-row {
+            display: flex;
+            gap: 0;
+            margin: 28px 0;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .stat-block {
+            flex: 1;
+            padding: 20px 24px;
+            border-right: 1px solid #e0e0e0;
+            background: #fafafa;
+        }
+
+        .stat-block:last-child {
+            border-right: none;
+        }
+
+        .stat-block .stat-number {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 20pt;
+            font-weight: 700;
+            color: #0d0d0d;
+            line-height: 1.1;
+            margin-bottom: 4px;
+        }
+
+        .stat-block .stat-label {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 7.5pt;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #888888;
+        }
+
+        /* ── FORMULA PILLARS ── */
+        .pillar-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 16px;
+            margin: 24px 0;
+        }
+
+        .pillar-card {
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            padding: 20px;
+            background: #fafafa;
+        }
+
+        .pillar-card .pillar-title {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 7.5pt;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #555555;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .ingredient-line {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 8.5pt;
+            color: #1a1a1a;
+            margin-bottom: 6px;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+
+        .ingredient-line .ing-name {
+            font-weight: 600;
+        }
+
+        .ingredient-line .ing-dose {
+            color: #888888;
+            font-size: 8pt;
+        }
+
+        .pillar-note {
+            font-family: 'Georgia', serif;
+            font-size: 8pt;
+            color: #666666;
+            margin-top: 10px;
+            font-style: italic;
+            line-height: 1.5;
+        }
+
+        /* ── WHY NOW LIST ── */
+        .numbered-list {
+            list-style: none;
+            margin: 16px 0;
+            padding: 0;
+        }
+
+        .numbered-list li {
+            display: flex;
+            gap: 18px;
+            margin-bottom: 18px;
+            align-items: flex-start;
+        }
+
+        .numbered-list li .num {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 16pt;
+            font-weight: 700;
+            color: #e0e0e0;
+            line-height: 1.2;
+            min-width: 24px;
+        }
+
+        .numbered-list li .num-text {
+            padding-top: 2px;
+        }
+
+        .numbered-list li .num-text strong {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 9.5pt;
+            font-weight: 700;
+            color: #0d0d0d;
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .numbered-list li .num-text span {
+            font-size: 10pt;
+            color: #444444;
+        }
+
+        /* ── REGULATORY BADGE ROW ── */
+        .badge-row {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin: 18px 0;
+        }
+
+        .badge {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 7.5pt;
+            font-weight: 700;
+            letter-spacing: 0.10em;
+            text-transform: uppercase;
+            padding: 6px 14px;
+            border: 1px solid #1a1a1a;
+            border-radius: 2px;
+            color: #1a1a1a;
+        }
+
+        .badge.positive {
+            background: #f0f4f0;
+            border-color: #4a7a4a;
+            color: #2d5a2d;
+        }
+
+        .badge.excluded {
+            background: #faf0f0;
+            border-color: #c0c0c0;
+            color: #888888;
+            text-decoration: line-through;
+        }
+
+        /* ── THE ASK BOX ── */
+        .ask-box {
+            border: 2px solid #1a1a1a;
+            border-radius: 4px;
+            padding: 32px 36px;
+            margin-top: 32px;
+            background: #fafafa;
+        }
+
+        .ask-box .ask-label {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 7.5pt;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: #888888;
+            margin-bottom: 10px;
+        }
+
+        .ask-box .ask-headline {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 14pt;
+            font-weight: 700;
+            color: #0d0d0d;
+            margin-bottom: 18px;
+        }
+
+        .ask-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .ask-list li {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 10pt;
+            padding: 9px 0;
+            border-bottom: 1px solid #e8e8e8;
+            color: #1a1a1a;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .ask-list li:last-child {
+            border-bottom: none;
+        }
+
+        .ask-list li::before {
+            content: '→';
+            color: #888888;
+            font-size: 10pt;
+        }
+
+        .ask-close {
+            font-family: 'Georgia', serif;
+            font-size: 10pt;
+            font-style: italic;
+            color: #555555;
+            margin-top: 20px;
+            line-height: 1.6;
+        }
+
+        /* ── TAGLINE CALLOUT ── */
+        .tagline-block {
+            text-align: center;
+            padding: 28px 0;
+            margin: 28px 0;
+            border-top: 1px solid #e0e0e0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .tagline-block .tagline-text {
+            font-family: 'Georgia', serif;
+            font-size: 15pt;
+            font-style: italic;
+            color: #0d0d0d;
+            letter-spacing: 0.01em;
+        }
+
+        .tagline-block .tagline-sub {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 7.5pt;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #aaaaaa;
+            margin-top: 6px;
+        }
+
+        /* ── FOOTER ── */
+        .doc-footer {
+            margin-top: 56px;
+            padding-top: 16px;
+            border-top: 1px solid #e0e0e0;
+            display: flex;
+            justify-content: space-between;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 7.5pt;
+            color: #aaaaaa;
+            letter-spacing: 0.06em;
+        }
+
+        /* ── PRINT STYLES ── */
+        @media print {
+            body {
+                padding: 48px 52px 64px 52px;
+                font-size: 10.5pt;
+            }
+            .stat-row, .pillar-grid {
+                break-inside: avoid;
+            }
+            .ask-box {
+                break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ══════════════════════════════════════════
+         HEADER
+    ══════════════════════════════════════════ -->
+    <div class="header-block">
+        <div class="label">Investor Pitch · Confidential</div>
+        <h1>Cognitive PM</h1>
+        <div class="subtitle">The first premium supplement built for overnight neurochemical restoration.</div>
+        <div class="meta-row">
+            <span>March 2026</span>
+            <span>Seed Stage</span>
+            <span>DTC · US &amp; Canada</span>
+        </div>
+    </div>
+
+
+    <!-- ══════════════════════════════════════════
+         THE OPPORTUNITY
+    ══════════════════════════════════════════ -->
+    <h2>The Opportunity</h2>
+
+    <div class="stat-row">
+        <div class="stat-block">
+            <div class="stat-number">$3.39B</div>
+            <div class="stat-label">US Nootropics Market, 2025</div>
+        </div>
+        <div class="stat-block">
+            <div class="stat-number">$7.44B</div>
+            <div class="stat-label">Projected by 2034 · 9.1% CAGR</div>
+        </div>
+        <div class="stat-block">
+            <div class="stat-number">$12.6B</div>
+            <div class="stat-label">Brain Health Supplements Broadly</div>
+        </div>
+        <div class="stat-block">
+            <div class="stat-number">22%</div>
+            <div class="stat-label">DTC Share of Global Supplement Revenue, 2024</div>
+        </div>
+    </div>
+
+    <p>DTC is the fastest-moving channel in the category and climbing. The market has institutional validation: Unilever acquired Onnit Labs in March 2025, signaling that major CPG is paying close attention to where premium cognitive brands are being built.</p>
+
+    <p>The problem is that every product in this category is fighting over the same shelf — morning stack, focus, energy, pre-work. At both the $35 and $55 price tier, <strong>PM cognitive positioning</strong> — take before sleep, support overnight neurochemical restoration — is an unclaimed position. A scan of 13 direct competitors across DTC and Amazon confirms it. Nobody is there.</p>
+
+
+    <!-- ══════════════════════════════════════════
+         THE PRODUCT
+    ══════════════════════════════════════════ -->
+    <h2>The Product</h2>
+
+    <p>A two-capsule PM cognitive supplement. Taken before sleep. Positioned around overnight neurochemical replenishment — rebuilding the neurotransmitter substrate that a demanding day depletes.</p>
+
+    <div class="tagline-block">
+        <div class="tagline-text">"Feed your brain while you sleep."</div>
+        <div class="tagline-sub">Tagline Direction</div>
+    </div>
+
+    <p>This is not a sleep aid. It does not contain melatonin, valerian, or anything sedating in a meaningful sense. It is a brain nutrition product timed to leverage the sleep window — when consolidation, repair, and restoration are already happening. The positioning is biologically coherent and completely differentiated from what exists at retail.</p>
+
+
+    <!-- ══════════════════════════════════════════
+         THE FORMULA
+    ══════════════════════════════════════════ -->
+    <h2>The Formula</h2>
+
+    <p>Eleven ingredients. Two size-0 capsules. Approximately 1,040 mg fill weight, sitting comfortably within format constraints with headroom for adjustment. The stack is built on three pillars.</p>
+
+    <div class="pillar-grid">
+
+        <div class="pillar-card">
+            <div class="pillar-title">Cognitive Substrate Support</div>
+            <div class="ingredient-line">
+                <span class="ing-name">CDP-Choline</span>
+                <span class="ing-dose">250 mg</span>
+            </div>
+            <div class="ingredient-line">
+                <span class="ing-name">Phosphatidylserine</span>
+                <span class="ing-dose">100 mg</span>
+            </div>
+            <div class="ingredient-line">
+                <span class="ing-name">Inositol</span>
+                <span class="ing-dose">100 mg</span>
+            </div>
+            <div class="pillar-note">Phosphatidylserine carries an FDA-qualified cognitive health claim — one of very few ingredients in the category that can say that on label legally.</div>
+        </div>
+
+        <div class="pillar-card">
+            <div class="pillar-title">Neurotransmitter Replenishment</div>
+            <div class="ingredient-line">
+                <span class="ing-name">L-Tyrosine</span>
+                <span class="ing-dose">150 mg</span>
+            </div>
+            <div class="ingredient-line">
+                <span class="ing-name">L-Theanine</span>
+                <span class="ing-dose">150 mg</span>
+            </div>
+            <div class="ingredient-line">
+                <span class="ing-name">GABA</span>
+                <span class="ing-dose">50 mg</span>
+            </div>
+            <div class="pillar-note">Tyrosine replenishes the catecholamine precursor pool overnight. Theanine supports alpha-wave activity without sedation. GABA positioned for relaxation support.</div>
+        </div>
+
+        <div class="pillar-card">
+            <div class="pillar-title">Neuroprotection &amp; Co-Factors</div>
+            <div class="ingredient-line">
+                <span class="ing-name">Enzogenol®</span>
+                <span class="ing-dose">150 mg</span>
+            </div>
+            <div class="ingredient-line">
+                <span class="ing-name">Niacinamide</span>
+                <span class="ing-dose">75 mg</span>
+            </div>
+            <div class="ingredient-line">
+                <span class="ing-name">Pyridoxal-5-Phosphate</span>
+                <span class="ing-dose">1.25 mg</span>
+            </div>
+            <div class="ingredient-line">
+                <span class="ing-name">Vitamin D3</span>
+                <span class="ing-dose">25 mcg</span>
+            </div>
+            <div class="ingredient-line">
+                <span class="ing-name">Vitamin B12</span>
+                <span class="ing-dose">0.5 mcg</span>
+            </div>
+            <div class="pillar-note">Enzogenol® — NZ radiata pine bark extract — has peer-reviewed evidence for cerebrovascular health and zero presence in any competitor product. A genuine differentiator with a sourcing story.</div>
+        </div>
+
+    </div>
+
+
+    <!-- ══════════════════════════════════════════
+         REGULATORY POSTURE
+    ══════════════════════════════════════════ -->
+    <h2>Regulatory Posture</h2>
+
+    <p>The formula is clean. Every ingredient has an established DSHEA pathway in the US and a viable route to NPN approval in Canada. No gray-zone ingredients.</p>
+
+    <div class="badge-row">
+        <div class="badge positive">DSHEA Compliant</div>
+        <div class="badge positive">NPN Pathway Clear</div>
+        <div class="badge positive">PS Qualified Claim</div>
+        <div class="badge excluded">No Vinpocetine</div>
+        <div class="badge excluded">No DMAE</div>
+        <div class="badge excluded">No Melatonin</div>
+    </div>
+
+    <p>The Phosphatidylserine qualified claim is a label asset. Few products in the category carry it. It provides credibility with the consumer who reads ingredients — the exact consumer this brand is targeting.</p>
+
+
+    <!-- ══════════════════════════════════════════
+         WHY NOW
+    ══════════════════════════════════════════ -->
+    <h2>Why Now</h2>
+
+    <ul class="numbered-list">
+        <li>
+            <div class="num">01</div>
+            <div class="num-text">
+                <strong>DTC infrastructure has matured.</strong>
+                <span>A brand can be built today on Shopify, Amazon, and Meta with far less capital than was required five years ago. A $35–$55 cognitive supplement with a tight identity and defensible positioning can be profitably acquired on paid social at category-standard CPAs.</span>
+            </div>
+        </li>
+        <li>
+            <div class="num">02</div>
+            <div class="num-text">
+                <strong>The PM cognitive white space is open.</strong>
+                <span>The market scan found no product claiming this position at the addressable price tier. That window will not stay open indefinitely. The nootropic category is attracting new entrants at a rate that has accelerated since 2023.</span>
+            </div>
+        </li>
+        <li>
+            <div class="num">03</div>
+            <div class="num-text">
+                <strong>The acquirer base is active.</strong>
+                <span>Unilever's Onnit acquisition is a data point, not an anomaly. CPG rollup appetite for premium wellness DTC brands with demonstrated unit economics is real. A brand built at the right tier with a differentiated ingredient story and clean regulatory posture is a credible acquisition candidate within a three-to-five year horizon.</span>
+            </div>
+        </li>
+    </ul>
+
+
+    <!-- ══════════════════════════════════════════
+         THE ASK
+    ══════════════════════════════════════════ -->
+    <div class="ask-box">
+        <div class="ask-label">The Ask</div>
+        <div class="ask-headline">Seed Capital · Four Use-of-Funds Categories</div>
+        <ul class="ask-list">
+            <li>Regulatory review and NPN filing — US &amp; Canada</li>
+            <li>Contract manufacturing pilot batch</li>
+            <li>DTC brand build and initial paid channel test</li>
+            <li>Facts panel, label, and concept creative</li>
+        </ul>
+        <p class="ask-close">This is a low-capital entry point for a category that has institutional appetite and a specific white space that has not been claimed. The formula is ready. The position is open. The infrastructure exists to move.</p>
+    </div>
+
+
+    <!-- ══════════════════════════════════════════
+         FOOTER
+    ══════════════════════════════════════════ -->
+    <div class="doc-footer">
+        <span>Cognitive PM Supplement · March 2026</span>
+        <span>Confidential — Do Not Distribute</span>
+    </div>
+
+</body>
+</html>
